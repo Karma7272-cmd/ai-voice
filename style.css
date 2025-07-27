@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Protest+Guerrilla&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:30px;
+    flex-direction: column;
+}
+#logo{
+    width: 20vw;
+}
+h1{
+    color: aliceblue;
+    font-family: "Protest Guerrilla", sans-serif;
+}
+#name{
+    color:rgb(212, 43, 122);
+    font-size: 45px;
+}
+#va{
+    color:rgb(43, 206, 212);
+    font-size: 45px; 
+}
+#voice{
+    width: 100px;
+    display: none;
+   
+}
+#btn{
+width: 30%;
+background: linear-gradient(to right,rgb(21, 145, 207),rgb(201, 41, 116));
+padding: 10px;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+font-size: 20px;
+border-radius: 20px;
+color: white;
+box-shadow: 2px 2px 10px rgb(21, 145, 207),2px 2px 10px rgb(201, 41, 116);
+border: none;
+transition: all 0.5s;
+cursor: pointer;
+}
+#btn:hover{
+    box-shadow: 2px 2px 20px rgb(21, 145, 207),2px 2px 20px rgb(201, 41, 116);
+    letter-spacing: 2px;
+}
+
+ 
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+}
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+    border: 2px rgb(47, 14, 196);
+    border-radius: 25px;
+    padding: 5px 10px;
+    background-color: black;
+    .search-bar {
+        border: 2px rgb(47, 14, 196);
+        outline: none;
+        padding: 8px;
+        font-size: 16px;
+        width: 250px;
+        color: rgb(247, 252, 253); /* Text color set to white */
+        background-color:black; /* Dark background for better contrast */
+      }
+      
+}
+  
+  .search-bar {
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 16px;
+    width: 250px;
+    background-color: black;
+}
+  
+  .search-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #333;
+}
+  
+  .search-btn:hover {
+    color: #007bff;
+}
+  
+  .search-icon {
+    font-size: 22px;
+}
+  
+
