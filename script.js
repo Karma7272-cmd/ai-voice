@@ -14,17 +14,68 @@ function speak(text) {
     window.speechSynthesis.speak(text_speak);
 }
 
-signupBtn.addEventListener("click", () => {
-    // Check if transition is needed, but for now we just show the app
+let assistantData = null;
+
+async function loadData() {
+    try {
+        const response = await fetch('data.json');
+        assistantData = await response.json();
+    } catch (err) {
+        console.error("Failed to load assistant data:", err);
+    }
+}
+
+signupBtn.addEventListener("click", async () => {
     welcomeOverlay.classList.add("hidden");
+    await loadData(); // Load the JSON data
     speak("Welcome onboard Sir, Lucas at your service.");
     wishMe();
 });
 
 window.addEventListener("load", () => {
-    // wishMe(); // Moved to after signup
+    // Already handled in signup logic
 });
 
+function takeCommand(message) {
+    if (!assistantData) return;
+
+    // Check custom responses from JSON
+    const foundResponse = assistantData.responses.find(r =>
+        r.trigger.some(t => message.includes(t.toLowerCase()))
+    );
+
+    if (foundResponse) {
+        speak(foundResponse.response);
+        return;
+    }
+
+    // Check specific links from JSON
+    const foundLink = assistantData.links.find(l =>
+        message.includes(`open ${l.name}`)
+    );
+
+    if (foundLink) {
+        speak(`Opening ${foundLink.name}, Sir.`);
+        window.open(foundLink.url, "_blank");
+        return;
+    }
+
+    // Handle Time & Date
+    if (message.includes("time")) {
+        let time = new Date().toLocaleString(undefined, { hour: "numeric", minute: "numeric" });
+        speak(time);
+    }
+    else if (message.includes("date")) {
+        let date = new Date().toLocaleString(undefined, { day: "numeric", month: "long" });
+        speak(date);
+    }
+    else {
+        // Fallback search
+        let query = message.replace("lucas", "").replace("hey", "").trim();
+        speak("I found this regarding " + query);
+        window.open(`https://www.google.com/search?q=${query}`, "_blank");
+    }
+}
 function wishMe() {
     let day = new Date();
     let hours = day.getHours();
@@ -48,7 +99,7 @@ if (speechRecognition) {
         console.log("Recognition started");
         content.innerText = "Listening...";
         voice.style.display = "block"; // Show visualizer
-        btn.style.display = "none";    // Hide button while listening (optional, or just change state)
+        btn.style.display = "none";    // Hide button while listening
         glassContainer.classList.add("listening");
     };
 
@@ -75,74 +126,4 @@ if (speechRecognition) {
     // Fallback for browsers without support
     content.innerText = "Speech Recognition Not Supported";
     btn.disabled = true;
-}
-
-function takeCommand(message) {
-    // Removed display toggles here since onend/onstart handles them better typically, 
-    // but preserving logic to ensure flow.
-
-    if (message.includes("hello") || message.includes("hey")) {
-        speak("hello sir, what can i help you?");
-    }
-    else if (message.includes("who are you")) {
-        speak("i am virtual assistant, created by nandha");
-    }
-    else if (message.includes("what is your name")) {
-        speak("i am lucas");
-    }
-    else if (message.includes("you are doveloped by")) {
-        speak("nandha");
-    }
-    else if (message.includes("who created you")) {
-        speak("I was developed by Nandha Kumar, a visionary developer, to assist you with various tasks");
-    }
-    else if (message.includes("tell me a joke")) {
-        speak("Why did the AI go to school? Because it wanted to improve its neural networks!");
-    }
-    else if (message.includes("what can you do")) {
-        speak("I can help with information, scheduling, reminders, calculations, and much more");
-    }
-    else if (message.includes("open youtube")) {
-        speak("opening youtube...");
-        window.open("https://youtube.com/", "_blank");
-    }
-    else if (message.includes("open google")) {
-        speak("opening google...");
-        window.open("https://google.com/", "_blank");
-    }
-    else if (message.includes("open facebook")) {
-        speak("opening facebook...");
-        window.open("https://facebook.com/", "_blank");
-    }
-    else if (message.includes("open instagram")) {
-        speak("opening instagram...");
-        window.open("https://instagram.com/", "_blank");
-    }
-    else if (message.includes("open whatsapp")) {
-        speak("opening whatsapp..");
-        window.open("https://web.whatsapp.com/", "_blank");
-    }
-    else if (message.includes("open github")) {
-        speak("opening github..");
-        window.open("https://github.com/", "_blank");
-    }
-    else if (message.includes("open calculator")) {
-        speak("opening calculator..");
-        window.open("https://mathsolver.microsoft.com/en/solver?r=bi&ref=bi/");
-    }
-    else if (message.includes("time")) {
-        let time = new Date().toLocaleString(undefined, { hour: "numeric", minute: "numeric" });
-        speak(time);
-    }
-    else if (message.includes("date")) {
-        let date = new Date().toLocaleString(undefined, { day: "numeric", month: "short" });
-        speak(date);
-    }
-    else {
-        // Fallback search
-        let query = message.replace("lucas", "").replace("shifra", "").trim();
-        let finalText = "this is what i found on internet regarding " + query;
-        speak(finalText);
-        window.open(`https://www.google.com/search?q=${query}`, "_blank");
-    }
 }
