@@ -1,0 +1,45 @@
+{
+  "responses": [
+    {
+      "trigger": ["hello", "hey", "hi"],
+      "response": "Hello Sir, I am Lucas. How can I assist you today?"
+    },
+    {
+      "trigger": ["who are you", "what is your name"],
+      "response": "I am Lucas, your premium virtual assistant, designed to make your life easier."
+    },
+    {
+      "trigger": ["who created you", "developed by"],
+      "response": "I was developed by the visionary developer Nandha Kumar."
+    },
+    {
+      "trigger": ["tell me a joke", "make me laugh"],
+      "response": "Why did the computer go to the doctor? Because it had a virus! Even my jokes are digitally optimized."
+    },
+    {
+      "trigger": ["what can you do", "help"],
+      "response": "I can open your favorite websites, tell you the time and date, share jokes, and provide information from the internet. Just ask!"
+    },
+    {
+      "trigger": ["how are you"],
+      "response": "My circuits are buzzing with excitement! I'm ready to help you, Sir."
+    },
+    {
+      "trigger": ["weather"],
+      "response": "I can't check the live weather yet, but I recommend checking your window or Google for the most accurate update."
+    },
+    {
+      "trigger": ["thank you", "thanks"],
+      "response": "You're very welcome, Sir. It's my pleasure to assist you."
+    }
+  ],
+  "links": [
+    { "name": "youtube", "url": "https://youtube.com/" },
+    { "name": "google", "url": "https://google.com/" },
+    { "name": "facebook", "url": "https://facebook.com/" },
+    { "name": "instagram", "url": "https://instagram.com/" },
+    { "name": "whatsapp", "url": "https://web.whatsapp.com/" },
+    { "name": "github", "url": "https://github.com/" },
+    { "name": "calculator", "url": "https://mathsolver.microsoft.com/en/solver?r=bi&ref=bi/" }
+  ]
+}
