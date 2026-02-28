@@ -85,7 +85,10 @@ function takeCommand(message) {
         speak("nandha");
     }
     else if (message.includes("who created you")) {
-        speak("I was developed by Nandha Kumar to assist you with various tasks");
+        speak("I was developed by Nandha Kumar, a visionary developer, to assist you with various tasks");
+    }
+    else if (message.includes("tell me a joke")) {
+        speak("Why did the AI go to school? Because it wanted to improve its neural networks!");
     }
     else if (message.includes("what can you do")) {
         speak("I can help with information, scheduling, reminders, calculations, and much more");
