@@ -2,6 +2,8 @@ let btn = document.querySelector("#btn");
 let content = document.querySelector("#content");
 let voice = document.querySelector("#voice");
 let glassContainer = document.querySelector(".glass-container");
+let welcomeOverlay = document.querySelector("#welcome-overlay");
+let signupBtn = document.querySelector("#signup-btn");
 
 function speak(text) {
     let text_speak = new SpeechSynthesisUtterance(text);
@@ -12,8 +14,15 @@ function speak(text) {
     window.speechSynthesis.speak(text_speak);
 }
 
-window.addEventListener("load", () => {
+signupBtn.addEventListener("click", () => {
+    // Check if transition is needed, but for now we just show the app
+    welcomeOverlay.classList.add("hidden");
+    speak("Welcome onboard Sir, Lucas at your service.");
     wishMe();
+});
+
+window.addEventListener("load", () => {
+    // wishMe(); // Moved to after signup
 });
 
 function wishMe() {
